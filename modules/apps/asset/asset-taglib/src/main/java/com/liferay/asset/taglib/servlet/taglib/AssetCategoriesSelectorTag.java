@@ -42,6 +42,7 @@ import com.liferay.taglib.aui.AUIUtil;
 import com.liferay.taglib.util.IncludeTag;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -214,12 +215,14 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 				}
 
 				if (!_ignoreRequestValue) {
-					String categoryIdsParam = request.getParameter(
+					String[] categoryIdsParam = request.getParameterValues(
 						_hiddenInput + StringPool.UNDERLINE +
 							vocabulary.getVocabularyId());
 
 					if (Validator.isNotNull(categoryIdsParam)) {
-						categoryIds = categoryIdsParam;
+						categoryIds = Arrays.toString(categoryIdsParam);
+						categoryIds = categoryIds.substring(
+							1, categoryIds.length() - 1);
 					}
 				}
 
