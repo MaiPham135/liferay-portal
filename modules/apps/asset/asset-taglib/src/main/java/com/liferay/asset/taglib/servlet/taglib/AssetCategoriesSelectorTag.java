@@ -23,6 +23,7 @@ import com.liferay.asset.taglib.internal.servlet.ServletContextUtil;
 import com.liferay.asset.taglib.internal.util.AssetCategoryUtil;
 import com.liferay.asset.taglib.internal.util.AssetVocabularyUtil;
 import com.liferay.petra.string.StringPool;
+import com.liferay.petra.string.StringUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
@@ -42,7 +43,6 @@ import com.liferay.taglib.aui.AUIUtil;
 import com.liferay.taglib.util.IncludeTag;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -220,9 +220,8 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 							vocabulary.getVocabularyId());
 
 					if (Validator.isNotNull(categoryIdsParam)) {
-						categoryIds = Arrays.toString(categoryIdsParam);
-						categoryIds = categoryIds.substring(
-							1, categoryIds.length() - 1);
+						categoryIds = StringUtil.merge(
+							categoryIdsParam, StringPool.COMMA);
 					}
 				}
 

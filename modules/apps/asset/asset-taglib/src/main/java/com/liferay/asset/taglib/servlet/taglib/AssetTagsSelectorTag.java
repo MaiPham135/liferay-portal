@@ -35,7 +35,6 @@ import com.liferay.taglib.aui.AUIUtil;
 import com.liferay.taglib.util.IncludeTag;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -239,8 +238,6 @@ public class AssetTagsSelectorTag extends IncludeTag {
 	}
 
 	protected List<String> getTagNames() {
-		String tagNames = _tagNames;
-
 		if (Validator.isNotNull(_className) && (_classPK > 0)) {
 			List<AssetTag> tags = AssetTagServiceUtil.getTags(
 				_className, _classPK);
@@ -252,12 +249,11 @@ public class AssetTagsSelectorTag extends IncludeTag {
 			String[] curTagsParam = request.getParameterValues(_hiddenInput);
 
 			if (Validator.isNotNull(curTagsParam)) {
-				tagNames = Arrays.toString(curTagsParam);
-				tagNames = tagNames.substring(1, tagNames.length() - 1);
+				return ListUtil.toList(curTagsParam);
 			}
 		}
 
-		return StringUtil.split(tagNames);
+		return StringUtil.split(_tagNames);
 	}
 
 	@Override
