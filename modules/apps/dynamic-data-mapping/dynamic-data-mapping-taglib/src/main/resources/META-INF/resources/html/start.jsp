@@ -136,6 +136,8 @@
 
 			var ddmFormDefinition = <%= DDMUtil.getDDMFormJSONString(ddmForm) %>;
 
+			ddmFormDefinition.defaultLanguageId = '<%= defaultLanguageId %>';
+
 			var liferayDDMForm = Liferay.component(
 				'<portlet:namespace /><%= HtmlUtil.escapeJS(fieldsNamespace) %>ddmForm',
 				new Liferay.DDM.Form({
